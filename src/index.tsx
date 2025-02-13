@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+//TODO: all a tags should be replaced with components that add safety params
 ReactDOM.render(
   <React.StrictMode>
     <App />
