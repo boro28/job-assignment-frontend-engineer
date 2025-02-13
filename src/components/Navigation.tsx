@@ -15,25 +15,8 @@ export default function Navigation(): JSX.Element {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/editor">
-              <i className="ion-compose" />
-              &nbsp;New Article
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/settings">
-              <i className="ion-gear-a" />
-              &nbsp;Settings
-            </NavLink>
-          </li>
-          <li className="nav-item">
             <NavLink className="nav-link" to="/login">
               Sign in
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/register">
-              Sign up
             </NavLink>
           </li>
         </ul>
