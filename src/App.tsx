@@ -9,6 +9,8 @@ import Logout from "./Logout";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Fotter";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +18,7 @@ function App(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <Navigation />
         <Switch>
           <Route path="/editor" exact component={Editor} />
           <Route path="/editor/:slug" exact component={Editor} />
@@ -25,9 +28,12 @@ function App(): JSX.Element {
           <Route path="/profile/:username/favorites" exact component={Profile} />
           <Route path="/register" exact component={LoginRegister} />
           <Route path="/settings" exact component={Settings} />
+          <Route path="/home" component={ArticleList} />
           <Route path="/:slug" exact component={Article} />
+          {/*TODO: quick hack for default view*/}
           <Route path="/" component={ArticleList} />
         </Switch>
+        <Footer />
       </Router>
     </QueryClientProvider>
   );
