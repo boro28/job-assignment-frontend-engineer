@@ -7,11 +7,11 @@ export default function Article(): JSX.Element {
             <h1>How to build webapps that scale</h1>
 
             <div className="article-meta">
-              <a href="/#/profile/ericsimmons">
+              <a href="/public#/profile/ericsimmons">
                 <img src="http://i.imgur.com/Qr71crq.jpg" />
               </a>
               <div className="info">
-                <a href="/#/profile/ericsimmons" className="author">
+                <a href="/public#/profile/ericsimmons" className="author">
                   Eric Simons
                 </a>
                 <span className="date">January 20th</span>
@@ -42,11 +42,11 @@ export default function Article(): JSX.Element {
 
           <div className="article-actions">
             <div className="article-meta">
-              <a href="/#/profile/ericsimmons">
+              <a href="/public#/profile/ericsimmons">
                 <img src="http://i.imgur.com/Qr71crq.jpg" />
               </a>
               <div className="info">
-                <a href="/#/profile/ericsimmons" className="author">
+                <a href="/public#/profile/ericsimmons" className="author">
                   Eric Simons
                 </a>
                 <span className="date">January 20th</span>
@@ -80,11 +80,11 @@ export default function Article(): JSX.Element {
                   <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
                 <div className="card-footer">
-                  <a href="/#/profile/jacobschmidt" className="comment-author">
+                  <a href="/public#/profile/jacobschmidt" className="comment-author">
                     <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
                   </a>
                   &nbsp;
-                  <a href="/#/profile/jacobschmidt" className="comment-author">
+                  <a href="/public#/profile/jacobschmidt" className="comment-author">
                     Jacob Schmidt
                   </a>
                   <span className="date-posted">Dec 29th</span>
@@ -96,11 +96,11 @@ export default function Article(): JSX.Element {
                   <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 </div>
                 <div className="card-footer">
-                  <a href="/#/profile/jacobschmidt" className="comment-author">
+                  <a href="/public#/profile/jacobschmidt" className="comment-author">
                     <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
                   </a>
                   &nbsp;
-                  <a href="/#/profile/jacobschmidt" className="comment-author">
+                  <a href="/public#/profile/jacobschmidt" className="comment-author">
                     Jacob Schmidt
                   </a>
                   <span className="date-posted">Dec 29th</span>

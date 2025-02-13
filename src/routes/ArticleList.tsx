@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { getArticles } from "./api/articles";
-import ArticlesItemsList from "./components/ArticlesItemsList";
+import { getArticles } from "../api/articles";
+import ArticlesItemsList from "../components/ArticlesItemsList";
 
 export default function ArticlesList(): JSX.Element {
   const articlesQuery = useQuery({

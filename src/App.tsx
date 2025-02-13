@@ -1,13 +1,13 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import Article from "./Article";
-import ArticleList from "./ArticleList";
-import Editor from "./Editor";
-import LoginRegister from "./LoginRegister";
-import Logout from "./Logout";
-import Profile from "./Profile";
-import Settings from "./Settings";
+import Article from "./routes/Article";
+import ArticleList from "./routes/ArticleList";
+import Editor from "./routes/Editor";
+import LoginRegister from "./routes/LoginRegister";
+import Logout from "./routes/Logout";
+import Profile from "./routes/Profile";
+import Settings from "./routes/Settings";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Fotter";
