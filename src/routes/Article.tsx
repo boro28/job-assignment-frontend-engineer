@@ -3,6 +3,7 @@ import { getArticle } from "../api/articles";
 import { useParams } from "react-router-dom";
 import AuthorSection from "../components/AuthorSection";
 import InfoWrapper from "../components/InfoWrapper";
+import FollowButton from "../components/FollowButton";
 type ArticleParams = {
   slug: string;
 };
@@ -21,11 +22,7 @@ export default function Article(): JSX.Element {
 
   const authorSection = (
     <AuthorSection author={author} createdAt={createdAt}>
-      <button className="btn btn-sm btn-outline-secondary">
-        <i className="ion-plus-round" />
-        {/* FIXME: counter was deleted as backend don't return such data*/}
-        &nbsp; Follow {username}
-      </button>
+      <FollowButton username={username} />
       &nbsp;&nbsp;
       <button className="btn btn-sm btn-outline-primary">
         <i className="ion-heart" />

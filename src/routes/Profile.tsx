@@ -1,4 +1,29 @@
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { getProfile } from "../api/profiles";
+import AuthorPicture from "../components/AuthorPicture";
+import FollowButton from "../components/FollowButton";
+import { getArticles } from "../api/articles";
+import ArticlesItemsList from "../components/ArticlesItemsList";
+type ProfileParams = {
+  username: string;
+};
+
 export default function Profile(): JSX.Element {
+  const { username: usernameParam } = useParams<ProfileParams>();
+  const { data, isLoading } = useQuery({
+    queryKey: ["profile", usernameParam],
+    queryFn: () => getProfile(usernameParam),
+  });
+
+  const articlesQuery = useQuery({
+    queryKey: ["articles", usernameParam],
+    queryFn: () => getArticles({ searchParams: { author: usernameParam } }),
+  });
+  if (isLoading || !data) {
+    return <div>Loading</div>;
+  }
+  const { username, image, bio } = data?.profile;
   return (
     <>
       <div className="profile-page">
@@ -6,16 +31,10 @@ export default function Profile(): JSX.Element {
           <div className="container">
             <div className="row">
               <div className="col-xs-12 col-md-10 offset-md-1">
-                <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
-                <h4>Eric Simons</h4>
-                <p>
-                  Cofounder @GoThinkster, lived in Aol&lsquo;s HQ for a few months, kinda looks like Peeta from the
-                  Hunger Games
-                </p>
-                <button className="btn btn-sm btn-outline-secondary action-btn">
-                  <i className="ion-plus-round" />
-                  &nbsp; Follow Eric Simons
-                </button>
+                <AuthorPicture image={image} className="user-img" />
+                <h4>{username}</h4>
+                <p>{bio}</p>
+                <FollowButton username={username} />
               </div>
             </div>
           </div>
@@ -27,65 +46,14 @@ export default function Profile(): JSX.Element {
               <div className="articles-toggle">
                 <ul className="nav nav-pills outline-active">
                   <li className="nav-item">
-                    <a className="nav-link active" href="">
-                      My Articles
-                    </a>
+                    <a className="nav-link active">My Articles</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="">
-                      Favorited Articles
-                    </a>
+                    <a className="nav-link disabled">Favorited Articles</a>
                   </li>
                 </ul>
               </div>
-
-              <div className="article-preview">
-                <div className="article-meta">
-                  <a href="/public#/profile/ericsimmons">
-                    <img src="http://i.imgur.com/Qr71crq.jpg" />
-                  </a>
-                  <div className="info">
-                    <a href="/public#/profile/ericsimmons" className="author">
-                      Eric Simons
-                    </a>
-                    <span className="date">January 20th</span>
-                  </div>
-                  <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                    <i className="ion-heart" /> 29
-                  </button>
-                </div>
-                <a href="/public#/how-to-build-webapps-that-scale" className="preview-link">
-                  <h1>How to build webapps that scale</h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                </a>
-              </div>
-
-              <div className="article-preview">
-                <div className="article-meta">
-                  <a href="/public#/profile/albertpai">
-                    <img src="http://i.imgur.com/N4VcUeJ.jpg" />
-                  </a>
-                  <div className="info">
-                    <a href="/public#/profile/albertpai" className="author">
-                      Albert Pai
-                    </a>
-                    <span className="date">January 20th</span>
-                  </div>
-                  <button className="btn btn-outline-primary btn-sm pull-xs-right">
-                    <i className="ion-heart" /> 32
-                  </button>
-                </div>
-                <a href="/public#/the-song-you-wont-ever-stop-singing" className="preview-link">
-                  <h1>The song you won&lsquo;t ever stop singing. No matter how hard you try.</h1>
-                  <p>This is the description for the post.</p>
-                  <span>Read more...</span>
-                  <ul className="tag-list">
-                    <li className="tag-default tag-pill tag-outline">Music</li>
-                    <li className="tag-default tag-pill tag-outline">Song</li>
-                  </ul>
-                </a>
-              </div>
+              <ArticlesItemsList queryResults={articlesQuery} />
             </div>
           </div>
         </div>
