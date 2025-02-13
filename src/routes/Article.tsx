@@ -1,67 +1,56 @@
+import { useQuery } from "react-query";
+import { getArticle } from "../api/articles";
+import { useParams } from "react-router-dom";
+import AuthorSection from "../components/AuthorSection";
+import InfoWrapper from "../components/InfoWrapper";
+type ArticleParams = {
+  slug: string;
+};
+
 export default function Article(): JSX.Element {
+  const { slug } = useParams<ArticleParams>();
+  const { data, isLoading } = useQuery({
+    queryKey: ["article", slug],
+    queryFn: () => getArticle(slug),
+  });
+  if (isLoading || !data) {
+    return <InfoWrapper className="article-page container">Loading...</InfoWrapper>;
+  }
+  const { author, createdAt, favoritesCount, body } = data?.article || {};
+  const { username } = author || {};
+
+  const authorSection = (
+    <AuthorSection author={author} createdAt={createdAt}>
+      <button className="btn btn-sm btn-outline-secondary">
+        <i className="ion-plus-round" />
+        {/* FIXME: counter was deleted as backend don't return such data*/}
+        &nbsp; Follow {username}
+      </button>
+      &nbsp;&nbsp;
+      <button className="btn btn-sm btn-outline-primary">
+        <i className="ion-heart" />
+        &nbsp; Favorite Post <span className="counter">({favoritesCount})</span>
+      </button>
+    </AuthorSection>
+  );
   return (
     <>
       <div className="article-page">
         <div className="banner">
           <div className="container">
             <h1>How to build webapps that scale</h1>
-
-            <div className="article-meta">
-              <a href="/public#/profile/ericsimmons">
-                <img src="http://i.imgur.com/Qr71crq.jpg" />
-              </a>
-              <div className="info">
-                <a href="/public#/profile/ericsimmons" className="author">
-                  Eric Simons
-                </a>
-                <span className="date">January 20th</span>
-              </div>
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-plus-round" />
-                &nbsp; Follow Eric Simons <span className="counter">(10)</span>
-              </button>
-              &nbsp;&nbsp;
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-heart" />
-                &nbsp; Favorite Post <span className="counter">(29)</span>
-              </button>
-            </div>
+            {authorSection}
           </div>
         </div>
 
         <div className="container page">
           <div className="row article-content">
-            <div className="col-md-12">
-              <p>Web development technologies have evolved at an incredible clip over the past few years.</p>
-              <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-              <p>It&lsquo;s a great solution for learning how other frameworks work.</p>
-            </div>
+            <div className="col-md-12">{body}</div>
           </div>
 
           <hr />
 
-          <div className="article-actions">
-            <div className="article-meta">
-              <a href="/public#/profile/ericsimmons">
-                <img src="http://i.imgur.com/Qr71crq.jpg" />
-              </a>
-              <div className="info">
-                <a href="/public#/profile/ericsimmons" className="author">
-                  Eric Simons
-                </a>
-                <span className="date">January 20th</span>
-              </div>
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-plus-round" />
-                &nbsp; Follow Eric Simons
-              </button>
-              &nbsp;
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-heart" />
-                &nbsp; Favorite Post <span className="counter">(29)</span>
-              </button>
-            </div>
-          </div>
+          <div className="article-actions">{authorSection}</div>
 
           <div className="row">
             <div className="col-xs-12 col-md-8 offset-md-2">

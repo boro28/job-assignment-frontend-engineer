@@ -1,11 +1,7 @@
 import { UseQueryResult } from "react-query/types/react/types";
 import ArticleItem from "./ArticleItem";
 import { MultipleArticlesResponse } from "../../api/Api";
-import { PropsWithChildren } from "react";
-
-function InfoWrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
-  return <div className="m-x-auto m-y-2"> {children}</div>;
-}
+import InfoWrapper from "../InfoWrapper";
 
 export default function ArticlesItemsList({
   queryResults: { data, isError, isLoading },
