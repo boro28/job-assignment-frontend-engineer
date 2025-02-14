@@ -18,11 +18,11 @@ export default function Article(): JSX.Element {
     return <InfoWrapper className="article-page container">Loading...</InfoWrapper>;
   }
   const { author, createdAt, favoritesCount, body } = data?.article || {};
-  const { username } = author || {};
+  const { username, following } = author || {};
 
   const authorSection = (
     <AuthorSection author={author} createdAt={createdAt}>
-      <FollowButton username={username} />
+      <FollowButton username={username} following={following} />
       &nbsp;&nbsp;
       <button className="btn btn-sm btn-outline-primary">
         <i className="ion-heart" />
