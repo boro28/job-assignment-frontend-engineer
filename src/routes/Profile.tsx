@@ -23,7 +23,7 @@ export default function Profile(): JSX.Element {
   if (isLoading || !data) {
     return <div>Loading</div>;
   }
-  const { username, image, bio } = data?.profile;
+  const { username, image, bio, following } = data?.profile;
   return (
     <>
       <div className="profile-page">
@@ -34,7 +34,7 @@ export default function Profile(): JSX.Element {
                 <AuthorPicture image={image} className="user-img" />
                 <h4>{username}</h4>
                 <p>{bio}</p>
-                <FollowButton username={username} />
+                <FollowButton username={username} following={following} />
               </div>
             </div>
           </div>
