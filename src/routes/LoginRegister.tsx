@@ -12,14 +12,15 @@ export default function LoginRegister(): JSX.Element {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get(EMAIL) as string;
-    const password = formData.get(PASSWORD) as string;
+    const email = String(formData.get(EMAIL));
+    const password = String(formData.get(PASSWORD));
     try {
-      const response = await login(email, password);
+      await login(email, password);
       history.push("/home");
-    } catch (e) {
-      const error = e as Error;
-      setError(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }
     }
   };
 

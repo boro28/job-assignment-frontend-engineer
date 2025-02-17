@@ -1,6 +1,6 @@
 import { UserResponse } from "./Api";
 import { api } from "./utils";
-import ky, { HTTPError } from "ky";
+import { HTTPError } from "ky";
 
 export async function login(email: string, password: string): Promise<UserResponse> {
   try {
