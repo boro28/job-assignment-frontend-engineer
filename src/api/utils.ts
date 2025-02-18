@@ -1,4 +1,4 @@
-import ky, { BeforeRequestHook } from "ky";
+import ky from "ky";
 import { getToken } from "../storage/auth";
 
 const baseUrl = "http://localhost:3000/api"; //TODO: change it to ENV
@@ -13,6 +13,7 @@ export const apiAuthorized = api.extend({
       (request: Request) => {
         const token = getToken();
         if (!token) {
+          //TODO: handel missing token properly
           throw new Error("Token is missing");
         }
         request.headers.set("Authorization", "Token: " + token);

@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useIsLoggedIn } from "../storage/auth";
 
 export default function Navigation(): JSX.Element {
+  const isLoggedIn = useIsLoggedIn();
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -15,9 +17,15 @@ export default function Navigation(): JSX.Element {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
-              Sign in
-            </NavLink>
+            {isLoggedIn ? (
+              <NavLink className="nav-link" to="/logout">
+                Sign out
+              </NavLink>
+            ) : (
+              <NavLink className="nav-link" to="/login">
+                Sign in
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>

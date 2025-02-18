@@ -1,7 +1,7 @@
 import { UserResponse } from "./Api";
 import { api } from "./utils";
 import { HTTPError } from "ky";
-import { deleteToken, getToken, setToken } from "../storage/auth";
+import { deleteToken, setToken } from "../storage/auth";
 
 export async function login(email: string, password: string): Promise<UserResponse> {
   try {
