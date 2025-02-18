@@ -1,12 +1,12 @@
 import { UserResponse } from "./Api";
 import { api } from "./utils";
 import { HTTPError } from "ky";
+import { deleteToken, getToken, setToken } from "../storage/auth";
 
 export async function login(email: string, password: string): Promise<UserResponse> {
   try {
     const data = await api.post("users/login", { json: { user: { email, password } } }).json<UserResponse>();
-    localStorage.setItem("token", data.user.token);
-
+    setToken(data.user.token);
     return data;
   } catch (error) {
     if (error instanceof HTTPError) {
@@ -21,9 +21,6 @@ export async function login(email: string, password: string): Promise<UserRespon
 }
 
 export function logout(): null {
-  localStorage.removeItem("token");
+  deleteToken();
   return null;
-}
-export function isLoggedIn(): boolean {
-  return Boolean(localStorage.getItem("token"));
 }
