@@ -8,6 +8,7 @@ export default function ArticlesItemsList({
 }: {
   queryResults: UseQueryResult<MultipleArticlesResponse>;
 }): JSX.Element {
+  //TODO: add pagination to articles request
   if (isLoading) {
     return <InfoWrapper>Loading....</InfoWrapper>; //TODO: proper loader or skeleton loader should be done
   }

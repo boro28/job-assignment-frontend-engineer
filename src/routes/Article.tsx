@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import AuthorSection from "../components/AuthorSection";
 import InfoWrapper from "../components/InfoWrapper";
 import FollowButton from "../components/FollowButton";
+import FavouriteButton from "../components/FavouriteButton";
 type ArticleParams = {
   slug: string;
 };
@@ -17,17 +18,16 @@ export default function Article(): JSX.Element {
   if (isLoading || !data) {
     return <InfoWrapper className="article-page container">Loading...</InfoWrapper>;
   }
-  const { author, createdAt, favoritesCount, body } = data?.article || {};
+  const { author, createdAt, favoritesCount, body, favorited } = data?.article || {};
   const { username, following } = author || {};
 
   const authorSection = (
     <AuthorSection author={author} createdAt={createdAt}>
-      <FollowButton username={username} following={following} article={slug} />
+      <FollowButton username={username} following={following} />
       &nbsp;&nbsp;
-      <button className="btn btn-sm btn-outline-primary">
-        <i className="ion-heart" />
-        &nbsp; Favorite Post <span className="counter">({favoritesCount})</span>
-      </button>
+      <FavouriteButton favorited={favorited} favoritesCount={favoritesCount} slug={slug}>
+        &nbsp; Favorite Post
+      </FavouriteButton>
     </AuthorSection>
   );
   return (

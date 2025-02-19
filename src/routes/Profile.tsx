@@ -25,6 +25,7 @@ export default function Profile(): JSX.Element {
     return <InfoWrapper>Loading</InfoWrapper>;
   }
   const { username, image, bio, following } = data?.profile;
+  //TODO:: add my articles section
   return (
     <>
       <div className="profile-page">
