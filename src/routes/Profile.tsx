@@ -5,6 +5,7 @@ import AuthorPicture from "../components/AuthorPicture";
 import FollowButton from "../components/FollowButton";
 import { getArticles } from "../api/articles";
 import ArticlesItemsList from "../components/ArticlesItemsList";
+import InfoWrapper from "../components/InfoWrapper";
 type ProfileParams = {
   username: string;
 };
@@ -21,7 +22,7 @@ export default function Profile(): JSX.Element {
     queryFn: () => getArticles({ searchParams: { author: usernameParam } }),
   });
   if (isLoading || !data) {
-    return <div>Loading</div>;
+    return <InfoWrapper>Loading</InfoWrapper>;
   }
   const { username, image, bio, following } = data?.profile;
   return (

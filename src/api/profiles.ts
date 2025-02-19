@@ -8,3 +8,7 @@ export function getProfile(username: string): Promise<ProfileResponse> {
 export function followProfile(username: string): Promise<ProfileResponse> {
   return apiAuthorized.post(`profiles/` + username + "/follow").json<ProfileResponse>();
 }
+
+export function unfollowProfile(username: string): Promise<ProfileResponse> {
+  return apiAuthorized.delete(`profiles/` + username + "/follow").json<ProfileResponse>();
+}
