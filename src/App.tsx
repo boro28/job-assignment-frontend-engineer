@@ -11,6 +11,7 @@ import Settings from "./routes/Settings";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Fotter";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
+        <ScrollToTop />
         <Navigation />
         <Switch>
           <Route path="/editor" exact component={Editor} />
