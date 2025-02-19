@@ -13,7 +13,13 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Fotter";
 import ScrollToTop from "./components/ScrollToTop";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 10, // Cache for 10 minutes
+    },
+  },
+});
 
 function App(): JSX.Element {
   return (

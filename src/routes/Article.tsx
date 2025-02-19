@@ -22,7 +22,7 @@ export default function Article(): JSX.Element {
 
   const authorSection = (
     <AuthorSection author={author} createdAt={createdAt}>
-      <FollowButton username={username} following={following} />
+      <FollowButton username={username} following={following} article={slug} />
       &nbsp;&nbsp;
       <button className="btn btn-sm btn-outline-primary">
         <i className="ion-heart" />
