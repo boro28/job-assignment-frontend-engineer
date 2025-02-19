@@ -1,7 +1,7 @@
 import { login } from "../api/users";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+//TODO: renavigate to page from log in was clicked
 const EMAIL = "email";
 const PASSWORD = "password";
 
